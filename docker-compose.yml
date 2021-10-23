@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    container_name: app-server
+    build: .
+    ports:
+      - 8080:8080
+    volumes:
+      - ~/assigment_logs:/log

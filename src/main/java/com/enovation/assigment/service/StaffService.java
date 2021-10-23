@@ -30,23 +30,23 @@ public class StaffService {
         this.wardClerkRepository = wardClerkRepository;
     }
 
-    public List<Staff> getAllDoctors() {
-        List<Staff> doctorList = new ArrayList<>();
+    public List<Doctor> getAllDoctors() {
+        List<Doctor> doctorList = new ArrayList<>();
         Iterable<Doctor> doctors = doctorRepository.findAll();
         doctors.forEach(doctorList::add);
         return doctorList;
     }
 
-    public Staff getDoctor(Long staffId) throws RestException {
+    public Doctor getDoctor(Long staffId) throws RestException {
         return doctorRepository.findById(staffId)
                 .orElseThrow(() -> new RestException("Doctor not found", HttpStatus.NOT_FOUND));
     }
 
-    public Staff createDoctor(Doctor doctor) {
+    public Doctor createDoctor(Doctor doctor) {
         return doctorRepository.save(doctor);
     }
 
-    public Staff updateDoctor(Long staffId, Doctor newDoctor) throws RestException {
+    public Doctor updateDoctor(Long staffId, Doctor newDoctor) throws RestException {
         Doctor fromDb = doctorRepository.findById(staffId)
                 .orElseThrow(() -> new RestException("Doctor not found", HttpStatus.NOT_FOUND));
         updateStaff(fromDb, newDoctor);
@@ -62,23 +62,23 @@ public class StaffService {
         doctorRepository.delete(doctor);
     }
 
-    public List<Staff> getAllNurses() {
-        List<Staff> list = new ArrayList<>();
+    public List<Nurse> getAllNurses() {
+        List<Nurse> list = new ArrayList<>();
         Iterable<Nurse> nurses = nurseRepository.findAll();
         nurses.forEach(list::add);
         return list;
     }
 
-    public Staff getNurse(Long staffId) throws RestException {
+    public Nurse getNurse(Long staffId) throws RestException {
         return nurseRepository.findById(staffId)
                 .orElseThrow(() -> new RestException("Nurse not found", HttpStatus.NOT_FOUND));
     }
 
-    public Staff createNurse(Nurse nurse) {
+    public Nurse createNurse(Nurse nurse) {
         return nurseRepository.save(nurse);
     }
 
-    public Staff updateNurse(Long staffId, Nurse newNurse) throws RestException {
+    public Nurse updateNurse(Long staffId, Nurse newNurse) throws RestException {
         Nurse fromDb = nurseRepository.findById(staffId)
                 .orElseThrow(() -> new RestException("Nurse not found", HttpStatus.NOT_FOUND));
         updateStaff(fromDb, newNurse);
@@ -93,23 +93,23 @@ public class StaffService {
         nurseRepository.delete(nurse);
     }
 
-    public List<Staff> getAllWardClerks() {
-        List<Staff> list = new ArrayList<>();
+    public List<WardClerk> getAllWardClerks() {
+        List<WardClerk> list = new ArrayList<>();
         Iterable<WardClerk> wards = wardClerkRepository.findAll();
         wards.forEach(list::add);
         return list;
     }
 
-    public Staff getWardClerk(Long staffId) throws RestException {
+    public WardClerk getWardClerk(Long staffId) throws RestException {
         return wardClerkRepository.findById(staffId)
                 .orElseThrow(() -> new RestException("Ward clerk not found", HttpStatus.NOT_FOUND));
     }
 
-    public Staff createWardClerk(WardClerk wardClerk) {
+    public WardClerk createWardClerk(WardClerk wardClerk) {
         return wardClerkRepository.save(wardClerk);
     }
 
-    public Staff updateWardClerk(Long staffId, WardClerk newWardClerk) throws RestException {
+    public WardClerk updateWardClerk(Long staffId, WardClerk newWardClerk) throws RestException {
         WardClerk fromDb = wardClerkRepository.findById(staffId)
                 .orElseThrow(() -> new RestException("Ward clerk not found", HttpStatus.NOT_FOUND));
         updateStaff(fromDb, newWardClerk);
