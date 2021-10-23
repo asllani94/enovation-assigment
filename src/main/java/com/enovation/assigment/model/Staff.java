@@ -1,9 +1,11 @@
 package com.enovation.assigment.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -16,5 +18,13 @@ public class Staff {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @Email
+    @NotNull
+    private String email;
+
+    @PastOrPresent
+    @NotNull
+    @JsonFormat(pattern="dd/MM/yyyy")
     private Date joined;
 }

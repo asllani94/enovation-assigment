@@ -4,11 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Getter
 @Setter
 public class Nurse extends Staff {
-    private String license;
+
+    @NotBlank(message = "licenseCode is mandatory")
+    private String licenseCode;
 
 }
